@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Browser Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Browser Window Container -->
+    <div class="browser-container">
+        
+        <!-- Browser Top Bar / Header -->
+        <header class="browser-header">
+            <!-- Window Control Buttons (Min, Max, Close) -->
+            <div class="window-controls">
+                <span class="control close"></span>
+                <span class="control minimize"></span>
+                <span class="control maximize"></span>
+            </div>
+            
+            <!-- Browser Tabs -->
+            <div class="browser-tabs">
+                <div class="tab active">
+                    <span class="tab-title">Portfolio.html</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Browser Navigation & Address Bar -->
+        <div class="browser-nav-bar">
+            <div class="nav-buttons">
+                <button class="nav-btn" aria-label="Back">&larr;</button>
+                <button class="nav-btn" aria-label="Forward">&rarr;</button>
+                <button class="nav-btn" aria-label="Refresh">&#x21BB;</button>
+            </div>
+            <div class="address-bar">
+                <span class="protocol">https://</span>
+                <input type="text" value="yourname.dev/portfolio" readonly>
+            </div>
+        </div>
+
+        <!-- Browser Content Viewport -->
+        <main class="browser-content">
+            <!-- Hero / Welcome Section -->
+            <section class="hero-section">
+                <h1>Hello, I am a Web Developer</h1>
+                <p>Welcome to my custom browser interface. I build clean, efficient, and responsive digital experiences.</p>
+                <a href="#projects" class="cta-btn">View My Work</a>
+            </section>
+
+            <!-- Projects Grid Section -->
+            <section id="projects" class="projects-section">
+                <h2>Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image-placeholder">💻</div>
+                        <h3>E-Commerce Platform</h3>
+                        <p>A full-featured online storefront with optimized checkout pipelines.</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image-placeholder">📊</div>
+                        <h3>Analytics Dashboard</h3>
+                        <p>Real-time data visualization engine tracking user retention metrics.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>

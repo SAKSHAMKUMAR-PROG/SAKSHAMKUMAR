@@ -1,2 +1,4 @@
-console.log ("saksham")
-
+const age=21
+console.log(age)
+age=23
+console.log(age)
