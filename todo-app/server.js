@@ -44,23 +44,23 @@ app.post('/api/auth/register', (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) return res.status(400).json({ error: 'username and password required' });
   const users = readJson(USERS_FILE);
-  if (users.find(u => u.username === username)) return res.status(400).json({ error: 'username taken' });
-  const passwordHash = bcrypt.hashSync(password, 10);
-  const user = { id: uuidv4(), username, passwordHash, createdAt: new Date().toISOString() };
+  if (users.find(u => u.user === username)) return res.status(400).json({ error: 'username taken' });
+  const pwd = bcrypt.hashSync(password, 10);
+  const user = { id: uuidv4(), user: username, pwd, created: new Date().toISOString() };
   users.push(user);
   writeJson(USERS_FILE, users);
-  res.status(201).json({ id: user.id, username: user.username });
+  res.status(201).json({ id: user.id, user: user.user });
 });
 
 app.post('/api/auth/login', (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) return res.status(400).json({ error: 'username and password required' });
   const users = readJson(USERS_FILE);
-  const user = users.find(u => u.username === username);
+  const user = users.find(u => u.user === username);
   if (!user) return res.status(400).json({ error: 'invalid credentials' });
-  const ok = bcrypt.compareSync(password, user.passwordHash);
+  const ok = bcrypt.compareSync(password, user.pwd);
   if (!ok) return res.status(400).json({ error: 'invalid credentials' });
-  const token = jwt.sign({ id: user.id, username: user.username }, JWT_SECRET, { expiresIn: '2h' });
+  const token = jwt.sign({ id: user.id, username: user.user }, JWT_SECRET, { expiresIn: '2h' });
   res.json({ token });
 });
 
