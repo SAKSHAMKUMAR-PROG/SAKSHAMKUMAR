@@ -123,4 +123,25 @@ app.delete('/api/todos/:id', authenticateToken, (req, res) => {
   res.json(removed);
 });
 
+// Mark complete / incomplete convenience endpoints
+app.post('/api/todos/:id/complete', authenticateToken, (req, res) => {
+  const todos = readJson(TODOS_FILE);
+  const idx = todos.findIndex(x => x.id === req.params.id && x.userId === req.user.id);
+  if (idx === -1) return res.status(404).json({ error: 'Todo not found' });
+  todos[idx].completed = true;
+  todos[idx].updatedAt = new Date().toISOString();
+  writeJson(TODOS_FILE, todos);
+  res.json(todos[idx]);
+});
+
+app.post('/api/todos/:id/incomplete', authenticateToken, (req, res) => {
+  const todos = readJson(TODOS_FILE);
+  const idx = todos.findIndex(x => x.id === req.params.id && x.userId === req.user.id);
+  if (idx === -1) return res.status(404).json({ error: 'Todo not found' });
+  todos[idx].completed = false;
+  todos[idx].updatedAt = new Date().toISOString();
+  writeJson(TODOS_FILE, todos);
+  res.json(todos[idx]);
+});
+
 app.listen(PORT, () => console.log(`Todo API listening on port ${PORT}`));
