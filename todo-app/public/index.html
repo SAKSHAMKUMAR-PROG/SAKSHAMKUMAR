@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="auth-panel" id="authPanel">
+        <div>
+          <p class="eyebrow">Todo App</p>
+          <h1>Sign in to manage tasks</h1>
+        </div>
+
+        <form id="authForm" class="stack">
+          <label>
+            Username
+            <input id="username" name="username" autocomplete="username" required>
+          </label>
+          <label>
+            Password
+            <input id="password" name="password" type="password" autocomplete="current-password" required>
+          </label>
+          <div class="auth-actions">
+            <button class="primary" type="submit" data-mode="login">Log in</button>
+            <button type="button" id="registerBtn">Register</button>
+          </div>
+          <p class="message" id="authMessage" role="status"></p>
+        </form>
+      </section>
+
+      <section class="todo-panel hidden" id="todoPanel">
+        <header class="todo-header">
+          <div>
+            <p class="eyebrow">Today</p>
+            <h1>Your tasks</h1>
+          </div>
+          <button id="logoutBtn" type="button">Log out</button>
+        </header>
+
+        <form id="todoForm" class="todo-form">
+          <input id="todoTitle" name="title" placeholder="Add a task" autocomplete="off" required>
+          <button class="primary" type="submit">Add</button>
+        </form>
+
+        <div class="toolbar">
+          <button class="filter active" type="button" data-filter="all">All</button>
+          <button class="filter" type="button" data-filter="open">Open</button>
+          <button class="filter" type="button" data-filter="done">Done</button>
+        </div>
+
+        <ul class="todo-list" id="todoList"></ul>
+        <p class="message" id="todoMessage" role="status"></p>
+      </section>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
